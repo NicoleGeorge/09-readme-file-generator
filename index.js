@@ -1,24 +1,26 @@
 const inquirer = require("inquirer");
-const inquirer = require("chalk");
+const chalk = require("chalk");
 const fs = require('fs');
 
 inquirer
   .prompt([
       { type: "input",
       message: "What is your GitHub username?",
-      name: "userName"
+      name: "userName",
+      default: "adorkablynicole"
       },
+
       {type: "input",
       message: "what is your "
 
       },
       { type: "input", 
-      message: "What is the title of your project?", 
-      name: "title" 
+      message: "What is your project title?", 
+      name: "projectTitle" 
       },
       { type: "input",
-      message: "What is the description of your project?",
-      name: "description"
+      message: "Project Description",
+      name: "projectDescription"
       },
       { type: "list",
       message: "Outline your table of contents",
@@ -28,16 +30,27 @@ inquirer
       message: "outline how this appliation is used.",
       name: "usage"
       },
-      { type: "checkbox",
+      { type: "list",
       message: "What license does this app fall under?",
-      name: "stack",
+      name: "license",
+      default: "ISC",
       choices: [
         "MIT",
-        "",
-        "",
-        ""
+        "ISC",
+        "GNU"
       ]},
-
+      {type: "input",
+      message: "how would you like people to contribute to your project?",
+      name: "contribute"
+      },
+      {type: "input",
+      message: "what was the testing process for this project?",
+      name: "testing"
+      },
+      {type: "input",
+      message: "Outline any further developments that need to be made.",
+      name: "questions"
+      },
 
 ])
 
