@@ -10,50 +10,60 @@ const writeFileAsync = util.promisify(fs.writeFile);
 function promptUser() {
     return inquirer.prompt([
       { type: "input",
-      message: ":nerd_face: What is your GitHub username?",
+      message: "What is your GitHub username? 🤓",
       name: "userName",
       default: "adorkablynicole"
       },
       { type: "input",
-      message: ":e-mail: What is your GitHub email",
+      message: "What is your GitHub email 📧",
       name: "userEmail"
-      },
+      },  
       { type: "input", 
-      message: ":open_file_folder: What is your project title?", 
-      name: "projectTitle" 
+      message: "What is your project title? 📂" , 
+      name: "projectTitle"
       },
+      {type: "list",
+      message: "What kind of project is this? 📦",
+      name: "projectType",
+      choices: [
+          'web design',
+          'homework',
+          'personal project',
+          'client work'
+      ]},
       { type: "input",
-      message: ":spiral_notepad: Project Description",
+      message: "OUtline the project description 🗒",
       name: "projectDescription"
       },
       {type: "input",
-      message: ":electric_plug: Outline steps to install this project",
+      message: "What steps are needed to install this project? 🔌",
       name: "projectInstallation"
       },
       { type: "input",
-      message: ":floppy_disk: outline how this appliation is used.",
+      message: "How this appliation is used? 💾",
       name: "projectUsage"
       },
       { type: "list",
-      message: ":closed_lock_with_key: What license does this app fall under?",
+      message: "What license does this app fall under? 🔐",
       name: "license",
       default: "ISC",
       choices: [
         "MIT",
         "ISC",
-        "GNU"
+        "GNU",
+        "CLI"
       ]},
       {type: "input",
-      message: ":pager: how would you like people to contribute to your project?",
+      message: "How would you like people to contribute to your project? 📟",
       name: "projectContributors"
       },
       {type: "input",
-      message: ":gear: what was the testing process for this project?",
+      message: "Please explain the testing process for this project? (if none, leave blank) ⚙ " ,
       name: "projectTests"
       },
       {type: "input",
-      message: ":8ball: Submit questions about further development recommendations",
-      name: "questions"
+      message: "Submit questions about further developments 🤯",
+      name: "projectQuestions"
       }
     ]);
    }
@@ -63,6 +73,9 @@ function promptUser() {
        
        # Project Title: 
        ## ${data.projectTitle}
+
+       # Project Type:
+       ## ${data.projectType}
 
        # Project Description:
        ${data.projectDescription}
@@ -89,3 +102,12 @@ function promptUser() {
         `
         }
 
+        function writeToFile(fileName, data) {
+        }
+        
+        function init() {
+        
+        }
+        
+        init();
+        
