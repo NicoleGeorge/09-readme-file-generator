@@ -88,44 +88,4 @@ function promptUser() {
         # [![Check out my Work !](https://img.shields.io/badge/View%20Portfolio-check%20it%20out-%23ffd1d4)](https://${data.userName}.github.io/my-portfolio/)
         `
         }
-        
-        async function init() {
-          console.log("hi")
-          try {
-            const data = await promptUser();
-        
-            const text = generatereadme(data);
-        
-            await writeFileAsync("readme.md", text);
-        
-            console.log("Successfully wrote to index.html");
-          } catch (err) {
-            console.log(err);
-          }
-        }
-        
-        init();
-        
-        `
-   }
 
-
-//   .then((answers) => {
-//     console.log(answers);
-//   })
-
-//   .catch((error) => {
-//     if (error.isTtyError) {
-//       // Prompt couldn't be rendered in the current environment
-//     } else {
-//       // Something else when wrong
-//     }
-//   });
-
-const questions = [];
-
-function writeToFile(fileName, data) {}
-
-function init() {}
-
-init();
