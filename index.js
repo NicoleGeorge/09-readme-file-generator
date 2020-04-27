@@ -68,7 +68,7 @@ function promptUser() {
     ]);
    }
 
-   function createReadMeFile(answers) {
+   function createReadMeFile(data) {
        return `
        
        # Project Title: 
@@ -102,12 +102,18 @@ function promptUser() {
         `
         }
 
-        function writeToFile(fileName, data) {
+
+        async function init() {
+            console.log("readme.md file generator in progress")
+            try {
+                const data = await promptUser();
+                const text = createReadMeFile(data);
+                await writeFileAsync("README.md", text);
+
+                console.log("You have now written a README.md file");
+            } catch (err) {
+                console.log(err);
+            }
         }
-        
-        function init() {
-        
-        }
-        
-        init();
-        
+init();
+
