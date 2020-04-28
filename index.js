@@ -12,7 +12,7 @@ clear();
 
 console.log(
   chalk.greenBright(
-    figlet.textSync('README Generator', { horizonatalLayout: 'full'})
+    figlet.textSync('README  Generator', { horizonatalLayout: 'full'})
   )
 );
 
@@ -109,12 +109,12 @@ function promptUser() {
     {
       type: "input",
       message: "Outline details for further project developments 🤯 ",
-      name: "projectQuestions",
+      name: "projectDevelopments",
     },
     {
       type: "input",
       message: "Cite all resources used for this project. (ie. stackoverlow.com, udemy.com, a GitHub profile) 📚 ",  
-      name: "projectQuestions",
+      name: "projectSources",
     },
   ]);
 }
@@ -142,13 +142,22 @@ function createReadMeFile(data) {
 ## Usage:
     ${data.projectUsage}
 
+## License:
+    ${data.license}
+
 ## Contributors
     ${data.projectContributors}
 
-## Testing:
+## Tests:
     ${data.projectTests}
 
-# [![follow me on GitHub](https://img.shields.io/github/followers/NicoleGeorge?label=Follow%20me%20on%20GitHub&logoColor=%23FF4901&style=social)
+## Future Developments:
+    ${data.projectDevelopments}
+
+## References: 
+    ${data.projectSources}
+
+# [!follow me on GitHub](https://img.shields.io/github/followers/NicoleGeorge?label=Follow%20me%20on%20GitHub&logoColor=%23FF4901&style=social)
 # [![Check out my Work !](https://img.shields.io/badge/View%20Portfolio-check%20it%20out-%23ffd1d4)](https://${data.userName}.github.io/my-portfolio/)
 `;
 }
