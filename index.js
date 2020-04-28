@@ -2,22 +2,21 @@ const inquirer = require("inquirer");
 const chalk = require("chalk");
 const fs = require("fs");
 const util = require("util");
-const figlet = require('figlet');
-const clear = require('clear');
+const figlet = require("figlet");
+const clear = require("clear");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
-
+// code snippet from: sitepoint.com/javascript-command-line-interface-cli-node-js/
 clear();
 
 console.log(
-  chalk.greenBright(
-    figlet.textSync('README  Generator', { horizonatalLayout: 'full'})
+  chalk.magentaBright(
+    figlet.textSync("README  Generator", { horizonatalLayout: "full" })
   )
 );
 
-
-// script outline from:  https://www.npmjs.com/package/inquirer
+// script outline from:  https://www.npmjs.com/package/inquirer & https://www.github.com/SBoudrias/Inquirer.js/
 
 function promptUser() {
   return inquirer.prompt([
@@ -25,37 +24,40 @@ function promptUser() {
       type: "input",
       message: "What is your GitHub username? 🤓 ",
       name: "userName",
-      validate: function(value) { //validating user input - making sure a username is entered
+      validate: function (value) {
+        //validating user input - making sure a username is entered
         if (value.length) {
           return true;
         } else {
-          return 'Please enter your GitHub username'
+          return "Please enter your GitHub username";
         }
-      }
+      },
     },
     {
       type: "input",
       message: "What is your GitHub email 📧 ",
       name: "userEmail",
-      validate: function(value) { //validating user input - making sure an email is entered
+      validate: function (value) {
+        //validating user input - making sure an email is entered
         if (value.length) {
           return true;
         } else {
-          return 'Please enter your email address'
+          return "Please enter your email address";
         }
-      }
+      },
     },
     {
       type: "input",
       message: "What is your project title? 📂 ",
       name: "projectTitle",
-      validate: function(value) { //validating user input - making sure a project title is entered
+      validate: function (value) {
+        //validating user input - making sure a project title is entered
         if (value.length) {
           return true;
         } else {
-          return 'Please enter a project title'
+          return "Please enter a project title";
         }
-      }
+      },
     },
     {
       type: "list",
@@ -68,20 +70,42 @@ function promptUser() {
       type: "input",
       message: "Outline the project breif, scope and all relevant details 🗒 ",
       name: "projectDescription",
-      validate: function(value) { //validating user input - making sure a project description is entered
+      validate: function (value) {
+        //validating user input - making sure a project description is entered
         if (value.length) {
           return true;
         } else {
-          return 'Please enter a project description'
+          return "Please enter a project description";
         }
-      }
+      },
     },
     {
       type: "checkbox",
-      message: "What pakages need to be installed to run this project? 🔌 (Press <space> to select)",
-      choices: ['npm', 'inquirer', 'chalk', 'figlet', 'clear'],
-      default: "node_modules",
+      message: "What are the requirements to run this project? 🦹‍♀️ ",
+      choices: ["Node.js", "Git", "GitHub account", "Code Editor"],
+      default: "Git + GitHub",
+      name: "projectRequirements",
+    },
+    {
+      type: "checkbox",
+      message:
+        "Outline the steps for installation (if applicable). 💻 (Press <space> to select)",
+      choices: [
+        "Clone repo",
+        "Run npm install",
+        "Create .gitignore",
+        "Run node index.js in terminal",
+      ],
+      default: "not applicable to this project. Refer to deployed link.",
       name: "projectInstallation",
+    },
+    {
+      type: "checkbox",
+      message:
+        "What pakages need to be installed to run this project (if applicable)? 🔌 (Press <space> to select)",
+      choices: ["npm", "inquirer", "chalk", "figlet", "clear", "configstore"],
+      default: "no packages necessary to run this project",
+      name: "projectPackageInstallation",
     },
     {
       type: "input",
@@ -103,7 +127,8 @@ function promptUser() {
     },
     {
       type: "input",
-      message: "Please explain the testing process for this project? (if none, leave blank) ⚙  ",
+      message:
+        "Please explain the testing process for this project? (if applicable) ⚙  ",
       name: "projectTests",
     },
     {
@@ -113,7 +138,8 @@ function promptUser() {
     },
     {
       type: "input",
-      message: "Cite all resources used for this project. (ie. stackoverlow.com, udemy.com, a GitHub profile) 📚 ",  
+      message:
+        "Cite all resources used for this project. (ie. stackoverlow.com, udemy.com, a GitHub profile) 📚 ",
       name: "projectSources",
     },
   ]);
@@ -132,12 +158,19 @@ function createReadMeFile(data) {
     ${data.projectDescription}
 
 # Table of Contents:
-1. Installation
-2. Usage
-3. License
+1. Requirements    
+2. Installation
+3. Usage
+4. License
+
+## Requirements: 
+    ${data.projectRequirements} 
 
 ## Installation:
     ${data.projectInstallation}
+
+### Node Modules Packages
+    ${data.projectPackageInstallation}
 
 ## Usage:
     ${data.projectUsage}
@@ -171,7 +204,9 @@ async function init() {
 
     await writeFileAsync("README.md", text);
 
-    console.log("You have successfully written your README.md file...WOOT-WOOT 🥳");  
+    console.log(
+      "You have successfully written your README.md file...WOOT-WOOT 🥳"
+    );
   } catch (err) {
     console.log(err);
   }
