@@ -147,7 +147,6 @@ function promptUser() {
 
 function createReadMeFile(data) {
   return `
-       
 # Project Title: 
     ${data.projectTitle}
 
