@@ -12,7 +12,7 @@ clear();
 
 console.log(
   chalk.greenBright(
-    figlet.textSync('README file Generator', { horizonatalLayout: 'full'})
+    figlet.textSync('README Generator', { horizonatalLayout: 'full'})
   )
 );
 
@@ -49,21 +49,38 @@ function promptUser() {
       type: "input",
       message: "What is your project title? 📂 ",
       name: "projectTitle",
+      validate: function(value) { //validating user input - making sure a project title is entered
+        if (value.length) {
+          return true;
+        } else {
+          return 'Please enter a project title'
+        }
+      }
     },
     {
       type: "list",
       message: "What kind of project is this? 📦 ",
       name: "projectType",
+      default: "homework",
       choices: ["web design", "homework", "personal project", "client work"],
     },
     {
       type: "input",
       message: "Outline the project breif, scope and all relevant details 🗒 ",
       name: "projectDescription",
+      validate: function(value) { //validating user input - making sure a project description is entered
+        if (value.length) {
+          return true;
+        } else {
+          return 'Please enter a project description'
+        }
+      }
     },
     {
-      type: "input",
-      message: "What steps are needed to install this project? 🔌 ",
+      type: "checkbox",
+      message: "What pakages need to be installed to run this project? 🔌 (Press <space> to select)",
+      choices: ['npm', 'inquirer', 'chalk', 'figlet', 'clear'],
+      default: "node_modules",
       name: "projectInstallation",
     },
     {
@@ -81,12 +98,12 @@ function promptUser() {
     {
       type: "input",
       message: "How would you like people to contribute to your project? 📟 ",
+      default: "email me",
       name: "projectContributors",
     },
     {
       type: "input",
-      message:
-        "Please explain the testing process for this project? (if none, leave blank) ⚙  ",
+      message: "Please explain the testing process for this project? (if none, leave blank) ⚙  ",
       name: "projectTests",
     },
     {
@@ -96,7 +113,7 @@ function promptUser() {
     },
     {
       type: "input",
-      message: "Cite any resources used for this project. (ie. stackoverlow.com, udemy.com, a GitHub profile) 📚 ",  
+      message: "Cite all resources used for this project. (ie. stackoverlow.com, udemy.com, a GitHub profile) 📚 ",  
       name: "projectQuestions",
     },
   ]);
@@ -131,8 +148,8 @@ function createReadMeFile(data) {
 ## Testing:
     ${data.projectTests}
 
-# [!follow me on GitHub](![GitHub followers](https://img.shields.io/github/followers/NicoleGeorge?label=Follow%20me%20on%20GitHub&logoColor=%23FF4901&style=social))
-# [!Check out my Work](https://img.shields.io/badge/View%20Portfolio-check%20it%20out-%23ffd1d4)](https://${data.userName}.github.io/my-portfolio/)
+# [![follow me on GitHub](https://img.shields.io/github/followers/NicoleGeorge?label=Follow%20me%20on%20GitHub&logoColor=%23FF4901&style=social)
+# [![Check out my Work !](https://img.shields.io/badge/View%20Portfolio-check%20it%20out-%23ffd1d4)](https://${data.userName}.github.io/my-portfolio/)
 `;
 }
 
