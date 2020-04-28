@@ -39,7 +39,8 @@
     
 
 ## Future Developments:
-    I would like to include a .gitignore file. Also, I would like to include GitHub Authentication using the GitHub API via tokens.
+    I would like to include a .gitignore file. 
+    Also, I would like to include GitHub Authentication using the GitHub API via tokens.
 
 ## References: 
     www.github.com/SBoudrias/inquirer.js/, sitepoint.com (URL is in the index.js file).

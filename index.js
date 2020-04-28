@@ -22,7 +22,7 @@ function promptUser() {
   return inquirer.prompt([
     {
       type: "input",
-      message: "What is your GitHub username? 🤓 ",
+      message: "What is your GitHub username? 🐱 ",   
       name: "userName",
       validate: function (value) {
         //validating user input - making sure a username is entered
@@ -133,7 +133,7 @@ function promptUser() {
     },
     {
       type: "input",
-      message: "Outline details for further project developments 🤯 ",
+      message: "Outline details for further project developments 🔮 ",
       name: "projectDevelopments",
     },
     {
@@ -177,7 +177,7 @@ function createReadMeFile(data) {
 ## License:
     ${data.license}
 
-## Contributors
+## Contributions:
     ${data.projectContributors}
 
 ## Tests:
@@ -195,7 +195,7 @@ function createReadMeFile(data) {
 }
 
 async function init() {
-  console.log("Ready, setty...GO write this readme.md file ya'll 🎉 ");
+  console.log("Ready, setty...GO and write your readme.md file ya'll 🤓🎉 ");
   try {
     const data = await promptUser();
 
